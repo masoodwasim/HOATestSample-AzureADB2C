@@ -7,9 +7,11 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using HOATest.Web.Infrastructure;
 using HOATest.Web.Models;
+using Newtonsoft.Json;
 
 namespace HOATest.Web.Proxy
 {
@@ -43,8 +45,16 @@ namespace HOATest.Web.Proxy
 
             return await client.GetStringAsync(apiURI);
         }
+        public async Task<string> PostAsync(string apiURI, BookViewModel data)
+        {
+            var client = new HttpClient { BaseAddress = new Uri(serviceOptions.BaseUrl, UriKind.Absolute) };
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", await GetAccessTokenAsync());
+            var postTask =  client.PostAsJsonAsync<BookViewModel>(apiURI, data);
+            postTask.Wait();
+            return postTask.Result.StatusCode.ToString();
+        }
 
-         
         // this is how you get tokens obtained by the OIDC middleware
         //private Task<string> GetAccessTokenAsync()
         //{

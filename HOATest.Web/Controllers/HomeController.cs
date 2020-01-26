@@ -9,7 +9,7 @@ using HOATest.Web.Models;
 using HOATest.Web.Proxy;
 using Newtonsoft.Json;
 using AutoMapper;
- 
+using FluentValidation.AspNetCore;
 
 namespace HOATest.Web.Controllers
 {
@@ -17,40 +17,40 @@ namespace HOATest.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly TestServiceProxy _testService;
-
+       
         public HomeController(ILogger<HomeController> logger, TestServiceProxy testService)
         {
             _logger = logger;
             _testService = testService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         { 
-            if (User.Identity.IsAuthenticated)
-            { 
-                var responseTask = await _testService.GetValuesAsync("api/books"); 
-                var result = JsonConvert.DeserializeObject<List<BookViewModel>>(responseTask.ToString());  
-                return View(result);
-            }
-            else
-            {
-                return View();
-            }
-          
+            return View();
         }
         public async Task<IActionResult> GetBooks()
         {
-            if (User.Identity.IsAuthenticated)
+            var responseTask = await _testService.GetValuesAsync("api/books");
+            var result = JsonConvert.DeserializeObject<List<BookViewModel>>(responseTask.ToString());
+            return View("Index", result);
+
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Save(BookViewModel bookViewModel)
+        {
+            var validator = new BookValidator();
+            var results = validator.Validate(bookViewModel);
+            results.AddToModelState(ModelState, null);
+            if (ModelState.IsValid)
             {
-                var responseTask = await _testService.GetValuesAsync("api/books");
-                var result = JsonConvert.DeserializeObject<List<BookViewModel>>(responseTask.ToString());
-                return View(result);
-            }
-            else
-            {
-                return View();
+                var result = await _testService.PostAsync("api/books", bookViewModel);
+                return RedirectToAction("GetBooks","Home");
             }
 
+            return View("Create");
         }
         public IActionResult Privacy()
         {

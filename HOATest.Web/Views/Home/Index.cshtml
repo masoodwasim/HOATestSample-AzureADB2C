@@ -3,75 +3,65 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (User.Identity.IsAuthenticated)
-{<h1 class="display-4">Authenticated</h1>}
-@if (User.Identity.IsAuthenticated)
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <p>
-        <a asp-action="GetBooks">Get Books</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PublishingCompany)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Author)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PublishingCompany)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Author)
-                    </td>
-                    <td>
-                        $ @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+<div class="parent-container d-flex">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="col-lg-12">
+                    <div class="card" style="width: 65rem;">
+                        <div class="card-body">
+                            <section>
+                                <div class="form-row">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="col form-group col-lg-2">
+                                            <a asp-action="GetBooks" class="btn btn-primary btn-sm" style="width:160px;">Get Books</a>
 
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                                        </div>
+                                        <div class="col form-group">
+                                            <a asp-action="Create" class="btn btn-secondary btn-sm" style="width:160px;"><i class="fa fa-plus" aria-hidden="true"></i>   Create New</a>
+                                        </div>
+                                    }
+                                    else { <div class="text-center">
+                                               <blockquote class="blockquote">
+                                                   <p class="h3">Welcome to HOA Web App Test.</p>
+                                                  <p></p><hr />
+                                                   <p class="mb-0">
+                                                       Learn more about HOA Web API which has been protected with Azure AD. You can read documentation about <a href="https://localhost:44327/swagger">HOA Web API</a> here.
+                                                       The Web and API has been built in ASP.NET Core. You can use single Sign-In using Facebook, Github or Email.
+                                                       <br />So, let us give a  try and sign in first to web application. I hope you will love it. :-) Happy Coding!
+                                                   </p><footer class="blockquote-footer">WasimUl Masood <cite title="Source Title">Building High performance Apps</cite></footer>
+                                               </blockquote>
+</div>}
+                                    </div>
+                                   
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</div>
+@if (Model != null)
+{
+    <div class="parent-container d-flex">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="col-lg-12">
+                        <div class="card" style="width: 65rem;">
+                            <div class="card-body">
+                                <section>
+                                    <partial name="_BooksView" />
+                                </section>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     }

@@ -47,7 +47,7 @@ namespace HOATest.API
                 c.SwaggerDoc("v1",
                 new OpenApiInfo
                 {
-                    Title = "CubeBook Retail API",
+                    Title = "HOA Test API",
                     Version = "v1",
                     Description = "API's to fetch current best Book titles around the world!",
                     TermsOfService = new Uri("http://tempuri.org/terms"),
@@ -103,7 +103,7 @@ namespace HOATest.API
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CubeBook Retail API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HOA Test API");
                 c.OAuthClientId("f75455ae-2b1b-4e8f-81af-dacfb82f9bde");
             });
 
