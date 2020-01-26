@@ -2,6 +2,7 @@
 using HOATest.API.DbModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 
 namespace HOATest.API.Controllers
@@ -18,19 +19,22 @@ namespace HOATest.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBooks()
+        public ActionResult<IEnumerable<BookModel>> GetBooks()
         {
-            var response = _bookManager.GetLatestBooks();
-            return Ok(response);
+            var items = _bookManager.GetLatestBooks();
+            return Ok(items);
         }
         [HttpPost]
         public IActionResult Post( BookModel book)
         {
-            var result = _bookManager.AddNewBook(book);
-            if (result > 0)
-                return Ok(HttpStatusCode.OK);
-            else
-                return Ok(HttpStatusCode.BadRequest);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            } 
+            var item = _bookManager.AddNewBook(book);
+            return CreatedAtAction("Get", new { id = item.ID }, item);
+
+           
         }
     }
 }

@@ -9,6 +9,6 @@ namespace HOATest.API.Business
     public interface IBooksManager
     {
         IEnumerable<BookModel> GetLatestBooks();
-        int AddNewBook(BookModel bookModel);
+        BookModel AddNewBook(BookModel bookModel);
     }
 }

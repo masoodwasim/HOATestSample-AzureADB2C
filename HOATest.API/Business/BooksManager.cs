@@ -14,7 +14,7 @@ namespace HOATest.API.Business
         {
             _context = context;
         }
-        public int AddNewBook(BookModel bookModel)
+        public BookModel AddNewBook(BookModel bookModel)
         {
             var newID = _context.BooksDbSet.Select(x => x.ID).Max() + 1;
             bookModel.ID = newID;
@@ -22,12 +22,12 @@ namespace HOATest.API.Business
             {
                 _context.BooksDbSet.Add(bookModel);
                 _context.SaveChanges();
-                return 1;
+                return bookModel;
             }
             catch (Exception ex)
             {
                 // Log exception
-                return 0;
+                return bookModel;
             }
         }
 
