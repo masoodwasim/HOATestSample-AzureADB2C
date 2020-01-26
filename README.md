@@ -1,11 +1,11 @@
 # HOATest-AzureAD
 ASP.NET Core Web API 3.0 with Azure AD B2 Authentication, Swagger UI.
 
-A sample demonstrating how you can configure your ASP.NET Core 3.0 applications to take advantage of [Azure AD B2C](https://azure.microsoft.com/en-us/services/active-directory-b2c/) and [MSAL](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to perform such tasks as:
-- Authenticate users
+A sample test web application built in ASP.NET Core 3.0 to perform such tasks as:
+- Authenticate users with Azure AD B2C( Single Sign In with Email, Facebook & Github)
 - Protect Web APIs
 - Redeem authorization code
-- Call a protected Web API
+- Call a protected Web API from Web Application
 
 
 # Configuration
