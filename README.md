@@ -49,6 +49,6 @@ A sample demonstrating how you can configure your ASP.NET Core 3.0 applications 
 ```
 
 ## HOATest.API -Swagger UI
-``` 
+
 [Web API Swagger UI](https://localhost:44327/swagger)
-```
+
