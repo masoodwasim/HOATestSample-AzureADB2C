@@ -36,7 +36,6 @@ namespace HOATest.API
                 {
                     options.MetadataAddress = $"{authOptions.Authority}/.well-known/openid-configuration?p={authOptions.SignInOrSignUpPolicy}";
                     options.Audience = authOptions.Audience;
-
                 });
 
             services.AddAuthorization(options =>
