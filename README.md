@@ -16,12 +16,12 @@ A sample test web application built in ASP.NET Core 3.0 to perform such tasks as
 "Authentication": {
     "Authentication": {
     "AzureAd": {
-      "Instance": "https://datasquaredev.b2clogin.com/",
-      "TenantId": "datasquaredev.onmicrosoft.com",
-      "ClientId": "591e08c8-1a4d-4f23-bb88-d3164259ed59",
-      "ClientSecret": "((I{%IsPa(k4Q9?$GR3#z56N",
+      "Instance": "",
+      "TenantId": "",
+      "ClientId": "",
+      "ClientSecret": "",
       "PostLogoutRedirectUri": "https://localhost:44397/",
-      "ApiIdentifier": "https://datasquaredev.onmicrosoft.com/testapi",
+      "ApiIdentifier": "",
       "B2C": {
         "SignInOrSignUpPolicy": "B2C_1_testsignupandsigninpolicy",
         "EditProfilePolicy": "B2C_1_TestProfileEditPolicy",
@@ -40,10 +40,10 @@ A sample test web application built in ASP.NET Core 3.0 to perform such tasks as
 "Authentication": {
     "Authentication": {
     "AzureAd": {
-      "Instance": "https://datasquaredev.b2clogin.com/",
-      "TenantId": "datasquaredev.onmicrosoft.com",
-      "Audience": "591e08c8-1a4d-4f23-bb88-d3164259ed59",
-      "SignInOrSignUpPolicy": "B2C_1_testsignupandsigninpolicy"
+      "Instance": "",
+      "TenantId": "",
+      "Audience": "",
+      "SignInOrSignUpPolicy": ""
     }
   }
 ```
